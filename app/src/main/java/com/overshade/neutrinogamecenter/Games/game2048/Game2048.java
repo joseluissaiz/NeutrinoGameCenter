@@ -30,7 +30,6 @@ import com.overshade.neutrinogamecenter.LoginCredentials;
 import com.overshade.neutrinogamecenter.Menus.MenuActivity;
 import com.overshade.neutrinogamecenter.R;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -75,6 +74,11 @@ public class Game2048 extends AppCompatActivity {
 
     private boolean canPlay = true;
 
+    private ImageView resetButton;
+    private int[][] lastMove;
+    private boolean turnReset;
+    private int lastPoints;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,8 +93,12 @@ public class Game2048 extends AppCompatActivity {
         scoreText = findViewById(R.id.score);
         highScoreText = findViewById(R.id.high_score);
         muteButton = findViewById(R.id.muteButton);
+        resetButton = findViewById(R.id.revertButton);
+
+        resetButton.setAlpha(0f);
 
         muteButton.setOnClickListener(v -> mute());
+        resetButton.setOnClickListener(v -> resetTurn());
 
         mainLayout.animate().alpha(1f).setDuration(500).start();
 
@@ -128,7 +136,10 @@ public class Game2048 extends AppCompatActivity {
             @Override
             public void onSwipeRight() {
                 if (!canPlay) { return; }
-                mainLayout.performClick();
+                lastMove = getLastMove();
+                lastPoints = score;
+                turnReset = false;
+                animateResetButtonAppear();
                 System.out.println("Swiped right");
                 animateGrid(20f, 0f);
                 for (int x = tiles.length-1; x >= 0; x--) {
@@ -153,6 +164,7 @@ public class Game2048 extends AppCompatActivity {
                                 if (checkColision(tiles[x][y], tiles[x+1][y]) && tiles[x][y].canMove()) {
                                     moveTile(tiles[x][y], tiles[x+1][y]);
                                     tiles[x+1][y].setCanMove(false);
+                                    tiles[x][y].setCanMove(false);
                                 }
                             }
                         }
@@ -165,6 +177,10 @@ public class Game2048 extends AppCompatActivity {
             @Override
             public void onSwipeLeft() {
                 if (!canPlay) { return; }
+                lastMove = getLastMove();
+                lastPoints = score;
+                turnReset = false;
+                animateResetButtonAppear();
                 System.out.println("Swiped left");
                 animateGrid(-20f, 0f);
                 for (int x = 0; x <= tiles.length-1; x++) {
@@ -189,6 +205,7 @@ public class Game2048 extends AppCompatActivity {
                                 if (checkColision(tiles[x][y], tiles[x-1][y]) && tiles[x][y].canMove()) {
                                     moveTile(tiles[x][y], tiles[x-1][y]);
                                     tiles[x-1][y].setCanMove(false);
+                                    tiles[x][y].setCanMove(false);
                                 }
                             }
                         }
@@ -200,6 +217,10 @@ public class Game2048 extends AppCompatActivity {
             @Override
             public void onSwipeTop() {
                 if (!canPlay) { return; }
+                lastMove = getLastMove();
+                lastPoints = score;
+                turnReset = false;
+                animateResetButtonAppear();
                 System.out.println("Swiped top");
                 animateGrid(0f, -20f);
                 for (int x = 0; x <= tiles.length-1; x++) {
@@ -224,6 +245,7 @@ public class Game2048 extends AppCompatActivity {
                                 if (checkColision(tiles[x][y], tiles[x][y-1]) && tiles[x][y].canMove()) {
                                     moveTile(tiles[x][y], tiles[x][y-1]);
                                     tiles[x][y-1].setCanMove(false);
+                                    tiles[x][y].setCanMove(false);
                                 }
                             }
                         }
@@ -235,6 +257,10 @@ public class Game2048 extends AppCompatActivity {
             @Override
             public void onSwipeBottom() {
                 if (!canPlay) { return; }
+                lastMove = getLastMove();
+                lastPoints = score;
+                turnReset = false;
+                animateResetButtonAppear();
                 System.out.println("Swiped bottom");
                 animateGrid(0f, 20f);
                 for (int x = tiles.length-1; x >= 0; x--) {
@@ -259,6 +285,7 @@ public class Game2048 extends AppCompatActivity {
                                 if (checkColision(tiles[x][y], tiles[x][y+1]) && tiles[x][y].canMove()) {
                                     moveTile(tiles[x][y], tiles[x][y+1]);
                                     tiles[x][y+1].setCanMove(false);
+                                    tiles[x][y].setCanMove(false);
                                 }
                             }
                         }
@@ -304,14 +331,59 @@ public class Game2048 extends AppCompatActivity {
             } else {
                 turnDone = false;
             }
+            turnReset = false;
         }
+    }
+
+    private int[][] getLastMove() {
+        int[][] tilesCopy = new int[tiles.length][tiles[0].length];
+        for (int x = 0; x < tiles.length; x++) {
+            for (int y = 0; y < tiles[0].length; y++) {
+                tilesCopy[x][y] = tiles[x][y].getValue();
+            }
+        }
+        return tilesCopy;
+    }
+
+    private void resetTurn() {
+        if (!turnReset) {
+            for (int x = 0; x < tiles.length; x++) {
+                for (int y = 0; y < tiles[0].length; y++) {
+                    tiles[x][y].changeValue(lastMove[x][y]);
+                }
+            }
+            score = lastPoints;
+            scoreText.setText(String.valueOf(score));
+            turnReset = true;
+            animateResetButtonGone();
+        }
+    }
+
+    private void animateResetButtonAppear() {
+        resetButton.animate().rotation(90).setDuration(150).start();
+        resetButton.animate().alpha(1f).setDuration(150).start();
+        resetButton.animate().scaleX(1f).setDuration(150).start();
+        resetButton.animate().scaleY(1f).setDuration(150).start();
+    }
+
+    private void animateResetButtonGone() {
+        resetButton.animate().rotation(0).setDuration(150).start();
+        resetButton.animate().alpha(0f).setDuration(150).start();
+        resetButton.animate().scaleX(0f).setDuration(150).start();
+        resetButton.animate().scaleY(0f).setDuration(150).start();
     }
 
     private void moveTile(Tile moving, Tile objective) {
         if (objective.getValue() == 0) {
             objective.changeValue(moving.getValue());
+            if (!moving.canMove()) {
+                objective.setCanMove(false);
+            }
         } else {
             objective.changeValue(moving.getValue()*2);
+            if (!moving.canMove()) {
+                objective.setCanMove(false);
+            }
             score+= moving.getValue()*2;
             scoreText.setText(String.valueOf(score));
             if (score > highScore) {
@@ -484,6 +556,8 @@ public class Game2048 extends AppCompatActivity {
         }
         setOnTouchListener();
         canPlay = true;
+        turnReset = true;
+        animateResetButtonGone();
     }
 
     private void assignViewToVariables() {
@@ -543,6 +617,10 @@ public class Game2048 extends AppCompatActivity {
         savedInstanceState.putInt("SONG_MILLIS", soundtrackPlayer.getCurrentPosition());
         savedInstanceState.putBoolean("IS_MUTED", isMuted);
         savedInstanceState.putBoolean("CAN_PLAY", canPlay);
+        savedInstanceState.putSerializable("LAST_MOVE", lastMove);
+        savedInstanceState.putBoolean("TURN_RESET", turnReset);
+        savedInstanceState.putInt("LAST_POINTS", lastPoints);
+
         super.onSaveInstanceState(savedInstanceState);
     }
 
@@ -581,6 +659,15 @@ public class Game2048 extends AppCompatActivity {
         canPlay = savedInstanceState.getBoolean("CAN_PLAY");
         if (!canPlay) {
             showLostDialog();
+        }
+
+        //recover reset configuration
+        lastMove = (int[][]) savedInstanceState.getSerializable("LAST_MOVE");
+        turnReset = savedInstanceState.getBoolean("TURN_RESET");
+        lastPoints = savedInstanceState.getInt("LAST_POINTS");
+
+        if (lastMove != null && !turnReset) {
+            animateResetButtonAppear();
         }
 
         super.onRestoreInstanceState(savedInstanceState);

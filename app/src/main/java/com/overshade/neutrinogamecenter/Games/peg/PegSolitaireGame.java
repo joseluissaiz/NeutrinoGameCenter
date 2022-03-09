@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -65,7 +66,11 @@ public class PegSolitaireGame extends AppCompatActivity {
             });
         }
     };
-    private boolean isPaused;
+
+    private ImageView resetButton;
+    private int[][] lastMove;
+    private boolean turnReset;
+    private int lastPoints;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,6 +83,11 @@ public class PegSolitaireGame extends AppCompatActivity {
         pegCounterText = findViewById(R.id.pegCountText);
         currentTimeText = findViewById(R.id.currentTimeText);
         xpText = findViewById(R.id.xpText);
+        resetButton = findViewById(R.id.revertButton);
+
+        resetButton.setAlpha(0f);
+
+        resetButton.setOnClickListener(v -> resetTurn());
 
         restart();
     }
@@ -177,6 +187,11 @@ public class PegSolitaireGame extends AppCompatActivity {
     }
 
     public void moveToPeg(Peg pegObjective) {
+        lastMove = getLastMove();
+        lastPoints = xp;
+        turnReset = false;
+        animateResetButtonAppear();
+
         if (pegObjective.getX() - 2 == selection.getX()) {
             pegs[pegObjective.getX()-1][pegObjective.getY()].changeState(Peg.PegState.HIDED);
         }
@@ -213,6 +228,66 @@ public class PegSolitaireGame extends AppCompatActivity {
             }
         }
         System.out.println("--------------------------------------------------------------------");
+    }
+
+    private int[][] getLastMove() {
+        int[][] pegsCopy = new int[pegs.length][pegs[0].length];
+        for (int x = 0; x < pegs.length; x++) {
+            for (int y = 0; y < pegs[0].length; y++) {
+                //hidden
+                if (pegs[x][y].getState() == Peg.PegState.HIDED) {
+                    pegsCopy[x][y] = 3;
+                }
+                //selected
+                if (pegs[x][y].getState() == Peg.PegState.SELECTED) {
+                    pegsCopy[x][y] = 2;
+                }
+                //unselected
+                if (pegs[x][y].getState() == Peg.PegState.UNSELECTED) {
+                    pegsCopy[x][y] = 1;
+                }
+            }
+        }
+        return pegsCopy;
+    }
+
+    private void resetTurn() {
+        if (!turnReset) {
+            for (int x = 0; x < lastMove.length; x++) {
+                for (int y = 0; y < lastMove[0].length; y++) {
+                    if (lastMove[x][y] == 3) {
+                        pegs[x][y].changeState(Peg.PegState.HIDED);
+                    }
+                    if (lastMove[x][y] == 2) {
+                        pegs[x][y].changeState(Peg.PegState.SELECTED);
+                        selection = pegs[x][y];
+                    }
+                    if (lastMove[x][y] == 1) {
+                        pegs[x][y].changeState(Peg.PegState.UNSELECTED);
+                    }
+                }
+            }
+            pegCount++;
+            pegCounterText.setText(String.valueOf(pegCount));
+            xp = lastPoints;
+            xpText.setText(String.valueOf(xp));
+            turnReset = true;
+            animateResetButtonGone();
+        }
+    }
+
+    private void animateResetButtonAppear() {
+        resetButton.animate().rotation(90).setDuration(150).start();
+        resetButton.animate().alpha(1f).setDuration(150).start();
+        resetButton.animate().scaleX(1f).setDuration(150).start();
+        resetButton.animate().scaleY(1f).setDuration(150).start();
+    }
+
+    private void animateResetButtonGone() {
+        resetButton.animate().rotation(0).setDuration(150).start();
+        resetButton.animate().alpha(0f).setDuration(150).start();
+        resetButton.animate().scaleX(0f).setDuration(150).start();
+        resetButton.animate().scaleY(0f).setDuration(150).start();
     }
 
     private void animatePeg(Peg peg) {
@@ -332,6 +407,8 @@ public class PegSolitaireGame extends AppCompatActivity {
         timerHandler.postDelayed(timerRunnable, 0);
         assignViewToVariables();
         createFirstHole();
+        turnReset = true;
+        animateResetButtonGone();
     }
 
     private void createFirstHole() {
@@ -432,6 +509,9 @@ public class PegSolitaireGame extends AppCompatActivity {
         savedInstanceState.putInt("CURRENT_TIME", currentTime);
         savedInstanceState.putInt("XP", xp);
         savedInstanceState.putInt("PEG_COUNT", pegCount);
+        savedInstanceState.putSerializable("LAST_MOVE", lastMove);
+        savedInstanceState.putBoolean("TURN_RESET", turnReset);
+        savedInstanceState.putInt("LAST_POINTS", lastPoints);
 
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -460,6 +540,13 @@ public class PegSolitaireGame extends AppCompatActivity {
         xpText.setText(String.valueOf(xp));
         pegCount = savedInstanceState.getInt("PEG_COUNT");
         pegCounterText.setText(String.valueOf(pegCount));
+        lastMove = (int[][]) savedInstanceState.getSerializable("LAST_MOVE");
+        turnReset = savedInstanceState.getBoolean("TURN_RESET");
+        lastPoints = savedInstanceState.getInt("LAST_POINTS");
+
+        if (lastMove != null && !turnReset) {
+            animateResetButtonAppear();
+        }
 
         super.onRestoreInstanceState(savedInstanceState);
     }

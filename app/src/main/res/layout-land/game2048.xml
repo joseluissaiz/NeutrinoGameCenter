@@ -32,6 +32,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.052" />
 
+    <ImageView
+        android:id="@+id/revertButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_baseline_sync_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/gifImageView"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -100,6 +110,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/tile_2048"
