@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="splash_distance_logo">-90dp</dimen>
+    <dimen name="splash_distance_title">-110dp</dimen>
+    <dimen name="gamelink_container_size">150dp</dimen>
+    <dimen name="gamelink_image_size">80dp</dimen>
+    <dimen name="gamelink_text_size">8sp</dimen>
+    <dimen name="name_bar_card_translation_X">-45dp</dimen>
+    <dimen name="settings_buttons_translation_showed">10dp</dimen>
+    <dimen name="settings_buttons_translation_hided">290dp</dimen>
+</resources>

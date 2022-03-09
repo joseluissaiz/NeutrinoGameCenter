@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Menus.MenuActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:alpha="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/main_layout"
+        android:background="@color/white">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FBFBFB">
+
+
+                <!--player info-->
+
+                <androidx.cardview.widget.CardView
+                    android:translationX="-130dp"
+                    android:id="@+id/player_photo_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#F8F8F8"
+                    app:cardBackgroundColor="#F8F8F8"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="64dp"
+                    app:cardCornerRadius="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" >
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_margin="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#F8F8F8"
+                        app:cardBackgroundColor="#F8F8F8"
+                        app:cardCornerRadius="20dp"
+                        android:elevation="0dp"
+                        app:cardElevation="0dp">
+
+                        <ImageView
+                            android:id="@+id/player_photo_big"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:src="@drawable/robot_icon" />
+
+                    </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:translationX="-300dp"
+                    android:id="@+id/username_text_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/worksans_medium"
+                    android:text="Username"
+                    android:textColor="@color/text_gray"
+                    android:textSize="26sp"
+                    app:layout_constraintStart_toEndOf="@+id/player_photo_card"
+                    app:layout_constraintTop_toTopOf="@+id/player_photo_card" />
+
+                <!--Level points-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/levelCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#EDEDED"
+                    app:cardCornerRadius="20dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/player_photo_card"
+                    app:layout_constraintStart_toStartOf="@+id/username_text_big"
+                    app:layout_constraintTop_toBottomOf="@+id/username_text_big">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingRight="15dp">
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/levelPointsView"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"
+                            app:lottie_rawRes="@raw/badge" />
+
+                        <TextView
+                            android:id="@+id/level_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/worksans_medium"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:text="0"
+                            android:textColor="@color/text_gray"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!--rank points-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/rankCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    app:cardBackgroundColor="#EDEDED"
+                    app:cardCornerRadius="20dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/player_photo_card"
+                    app:layout_constraintStart_toEndOf="@+id/levelCard"
+                    app:layout_constraintTop_toBottomOf="@+id/username_text_big">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingRight="15dp">
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/rankPointsView"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"
+                            app:lottie_rawRes="@raw/crown" />
+
+                        <TextView
+                            android:id="@+id/rankPoints"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/worksans_medium"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:text="0"
+                            android:textColor="@color/text_gray"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <ImageView
+                    android:id="@+id/settings_button"
+                    android:layout_margin="5dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:rotation="-90"
+                    android:src="@drawable/ic_baseline_bar_chart_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/text_gray" />
+
+
+                <!--Game bar-->
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="230dp"
+                    android:text="Games"
+                    android:fontFamily="@font/worksans_medium"
+                    android:textColor="@color/text_gray"
+                    android:textSize="23dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/game_container"
+                    android:padding="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="500dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#E1E1E1"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" >
+
+                    <GridView
+                        android:id="@+id/game_link_grid"
+                        android:numColumns="4"
+                        android:horizontalSpacing="10dp"
+                        android:verticalSpacing="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+
+
+                <!--Statistics bar-->
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="88dp"
+                    android:text="Ranking"
+                    android:fontFamily="@font/worksans_medium"
+                    android:textColor="@color/text_gray"
+                    android:textSize="23dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/game_container" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/rankingSpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:minHeight="35dp"
+                    style="@style/SpinnerTheme"
+                    android:spinnerMode="dropdown"
+                    android:background="@drawable/edittext_shape"
+                    android:backgroundTint="#EAEAEA"
+                    android:popupTheme="@style/Widget.AppCompat.Spinner.DropDown"
+                    android:minWidth="100dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView4"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    android:minHeight="500dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#E1E1E1"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4" >
+
+                    <!--Header-->
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:columnCount="4">
+
+                        <TextView
+                            android:id="@+id/ranking_icon_header"
+                            android:layout_column="0"
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_gray"
+                            android:fontFamily="@font/worksans_medium"
+                            android:gravity="center"
+                            android:layout_columnWeight="1"
+                            android:text="Icon"/>
+
+                        <TextView
+                            android:id="@+id/ranking_username_header"
+                            android:layout_column="1"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_gray"
+                            android:fontFamily="@font/worksans_medium"
+                            android:gravity="center"
+                            android:layout_columnWeight="1"
+                            android:text="Username"/>
+
+                        <TextView
+                            android:id="@+id/ranking_level_header"
+                            android:layout_column="2"
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_gray"
+                            android:fontFamily="@font/worksans_medium"
+                            android:gravity="center"
+                            android:layout_columnWeight="1"
+                            android:text="Level"/>
+
+                        <TextView
+                            android:id="@+id/ranking_score_header"
+                            android:layout_column="3"
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_gray"
+                            android:fontFamily="@font/worksans_medium"
+                            android:gravity="center"
+                            android:layout_columnWeight="1"
+                            android:text="Best score"/>
+
+                    </GridLayout>
+                    <!--List-->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/ranking_recyclerview"
+                        android:nestedScrollingEnabled="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+                <!--Settings-->
+
+                <ImageView
+                    android:id="@+id/quit_settings_button"
+                    android:layout_margin="5dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:translationX="300dp"
+                    android:rotation="-90"
+                    android:src="@drawable/ic_baseline_close_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/text_gray" />
+
+                <LinearLayout
+                    android:id="@+id/change_photo_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_shape"
+                    android:backgroundTint="#DFAAED"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:translationX="300dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/settings_button">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="40dp"
+                        android:fontFamily="@font/worksans_medium"
+                        android:text="Change profile photo"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/change_password_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_shape"
+                    android:backgroundTint="#B9AAED"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:translationX="300dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/change_photo_button">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="85dp"
+                        android:fontFamily="@font/worksans_medium"
+                        android:text="Change password"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/logout_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_shape"
+                    android:backgroundTint="#EDB0AA"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:layout_marginTop="5dp"
+                    android:translationX="300dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/change_password_button">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="180dp"
+                        android:fontFamily="@font/worksans_medium"
+                        android:text="Log out"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <!--NameBar-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/name_bar_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FAFAFA"
+            app:cardBackgroundColor="#FAFAFA"
+            android:elevation="5dp"
+            android:translationX="-200dp"
+            android:layout_marginTop="5dp"
+            app:cardCornerRadius="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardview2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#F8F8F8"
+                    app:cardBackgroundColor="#F8F8F8"
+                    app:cardCornerRadius="20dp"
+                    android:elevation="0dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" >
+
+                    <ImageView
+                        android:id="@+id/player_photo_little"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/robot_icon" />
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_marginStart="5dp"
+                    android:id="@+id/username_text_little"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/worksans_medium"
+                    android:text="Username"
+                    android:textColor="@color/text_gray" />
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

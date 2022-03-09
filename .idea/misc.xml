@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/drawable-v24/tile_2048.xml" value="0.2955" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/drawable/button_shape_disabled.xml" value="0.1935" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/drawable/button_shape_enabled.xml" value="0.2955" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/drawable/edittext_shape.xml" value="0.2955" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/drawable/game_link_shape.xml" value="0.2955" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/drawable/round_background.xml" value="0.2125" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/drawable/spinner_dropdown_background.xml" value="0.1935" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout-land/activity_change_photo.xml" value="0.30687830687830686" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout-land/game2048.xml" value="0.25" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout-land/peg_solitaire.xml" value="0.30687830687830686" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout-v31/game_link_layout.xml" value="0.2418478260869565" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout/activity_change_password.xml" value="0.3625" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout/activity_change_photo.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout/activity_login.xml" value="0.3625" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout/activity_main.xml" value="0.3625" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout/activity_menu.xml" value="0.24860335195530725" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout/activity_sign_up.xml" value="0.3484375" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout/activity_splash.xml" value="0.33" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout/game2048.xml" value="0.2983032293377121" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout/game2048_game_over.xml" value="0.3625" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout/game2048_popup.xml" value="0.3625" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout/game_link_layout.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout/peg_solitaire.xml" value="0.33" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout/peg_solitaire_game_over.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout/peg_solitaire_win.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout/photo_list_layout.xml" value="0.3625" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout/ranking_list_item.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/josel/AndroidStudioProjects/NeutrinoGameCenter/app/src/main/res/layout/spinner_item.xml" value="0.2975630611372381" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
