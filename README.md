@@ -16,13 +16,13 @@ An android applicattion where you can play some games and share your scores with
 
 ## Screenshots
 
-*1*
+
 ![screen1](https://raw.githubusercontent.com/joseluissaiz/NeutrinoGameCenter/master/screen1.png)
-*2*
+
 ![screen2](https://raw.githubusercontent.com/joseluissaiz/NeutrinoGameCenter/master/screen2.png)
-*3*
+
 ![screen3](https://raw.githubusercontent.com/joseluissaiz/NeutrinoGameCenter/master/screen3.png)
-*4*
+
 ![screen4](https://raw.githubusercontent.com/joseluissaiz/NeutrinoGameCenter/master/screen4.png)
 ## Authors
 
